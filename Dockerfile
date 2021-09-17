@@ -33,7 +33,7 @@ ENV HADOOP_HOME /usr/hadoop-$HADOOP_VERSION
 ENV HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 ENV PATH $PATH:$HADOOP_HOME/bin
 RUN wget http://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz \
-    | tar -x -C /usr/ && \
+    | tar -vxzf -C /usr/ && \
     rm -rf $HADOOP_HOME/share/doc
 
 # SPARK
@@ -47,7 +47,7 @@ ENV SPARK_DIST_CLASSPATH="$HADOOP_HOME/etc/hadoop/*:$HADOOP_HOME/share/hadoop/co
 ENV PATH $PATH:$SPARK_HOME/bin
 RUN wget http://d3kbcqa49mib13.cloudfront.net/$SPARK_PACKAGE.tgz \
     | gunzip \
-    | tar x -C /usr/ && \
+    | tar -xvzf -C /usr/ && \
     mv /usr/$SPARK_PACKAGE $SPARK_HOME && \
     rm -rf $SPARK_HOME/examples $SPARK_HOME/ec2
 
