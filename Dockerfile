@@ -20,8 +20,6 @@ RUN sed -i 's|'$(cat curr_version.tmp)'/main|'$ALPINE_OLD_VERSION'/main|' \
 # Upgrading pip to the last compatible version
 RUN pip3 install --upgrade pip
 
-# Installing IPython
-RUN pip install ipython 
 
 # GENERAL DEPENDENCIES
 
@@ -43,7 +41,7 @@ RUN curl -sL --retry 3 \
 
 # SPARK
 
-ENV SPARK_VERSION 2.0.0
+ENV SPARK_VERSION 2.4.0
 ENV SPARK_PACKAGE spark-$SPARK_VERSION-bin-without-hadoop
 ENV SPARK_HOME /usr/spark-$SPARK_VERSION
 ENV PYSPARK_PYTHON python3 
