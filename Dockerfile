@@ -19,9 +19,6 @@ RUN sed -i 's|'$(cat curr_version.tmp)'/main|'$ALPINE_OLD_VERSION'/main|' \
     rm curr_version.tmp
 # Upgrading pip to the last compatible version
 RUN pip3 install --upgrade pip
-RUN conda update conda
-RUN conda update ipython
-RUN conda --version
 
 # GENERAL DEPENDENCIES
 
