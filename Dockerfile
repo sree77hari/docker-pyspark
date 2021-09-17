@@ -33,7 +33,7 @@ ENV HADOOP_HOME /usr/hadoop-$HADOOP_VERSION
 ENV HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 ENV PATH $PATH:$HADOOP_HOME/bin
 RUN wget http://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz \
-    | tar -vxzf -C /usr/ && \
+    | tar -vxzf -C --directory=/usr/ && \
     rm -rf $HADOOP_HOME/share/doc
 
 # SPARK
