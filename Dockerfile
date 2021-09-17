@@ -32,9 +32,9 @@ ENV HADOOP_VERSION 2.7.2
 ENV HADOOP_HOME /usr/hadoop-$HADOOP_VERSION
 ENV HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 ENV PATH $PATH:$HADOOP_HOME/bin
-RUN wget http://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz \
+RUN wget http://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && \
     tar -vxzf hadoop-$HADOOP_VERSION.tar.gz && \
-    mv hadoop-$HADOOP_VERSION /usr/hadoop-$HADOOP_VERSION
+    mv hadoop-$HADOOP_VERSION /usr/hadoop-$HADOOP_VERSION && \
     rm -rf $HADOOP_HOME/share/doc
 
 # SPARK
