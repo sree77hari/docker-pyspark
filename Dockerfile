@@ -22,6 +22,7 @@ RUN pip3 install --upgrade pip
 
 # Installing IPython
 RUN apk add --no-cache python-dev py-pip
+RUN pip install --upgrade pip
 RUN pip install https://github.com/jonathanslenders/python-prompt-toolkit/archive/master.zip
 RUN pip install ipython
 
