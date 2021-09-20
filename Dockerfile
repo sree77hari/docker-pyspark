@@ -38,7 +38,7 @@ RUN wget http://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/had
     rm -rf $HADOOP_HOME/share/doc
 
 # SPARK
-RUN apk --no-cache add ca-certificates openssl libstdc++ && update-ca-certificates
+RUN apk add ca-certificates wget && update-ca-certificates
 ENV SPARK_VERSION 2.4.0
 ENV SPARK_PACKAGE spark-$SPARK_VERSION-bin-without-hadoop
 ENV SPARK_HOME /usr/spark-$SPARK_VERSION
