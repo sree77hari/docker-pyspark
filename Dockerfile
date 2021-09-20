@@ -21,7 +21,7 @@ RUN sed -i 's|'$(cat curr_version.tmp)'/main|'$ALPINE_OLD_VERSION'/main|' \
 RUN pip3 install --upgrade pip
 RUN apk add --no-cache python-dev py-pip
 # Installing IPython
-RUN pip install ipython
+RUN pip3 install ipython
 
 # GENERAL DEPENDENCIES
 
