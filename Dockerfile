@@ -48,6 +48,7 @@ ENV SPARK_DIST_CLASSPATH="$HADOOP_HOME/etc/hadoop/*:$HADOOP_HOME/share/hadoop/co
 ENV PATH $PATH:$SPARK_HOME/bin
 RUN wget http://d3kbcqa49mib13.cloudfront.net/$SPARK_PACKAGE.tgz && \
     gunzip $SPARK_PACKAGE.tgz && \
+    mv $SPARK_PACKAGE /usr/$SPARK_PACKAGE && \
     mv /usr/$SPARK_PACKAGE $SPARK_HOME && \
     rm -rf $SPARK_HOME/examples $SPARK_HOME/ec2
 
