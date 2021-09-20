@@ -19,6 +19,9 @@ RUN sed -i 's|'$(cat curr_version.tmp)'/main|'$ALPINE_OLD_VERSION'/main|' \
     rm curr_version.tmp
 # Upgrading pip to the last compatible version
 RUN pip3 install --upgrade pip
+RUN apk-add --no-cache python-dev py-pip
+# Installing IPython
+RUN pip install ipython
 
 # GENERAL DEPENDENCIES
 
@@ -42,6 +45,7 @@ RUN apk add ca-certificates wget && update-ca-certificates
 ENV SPARK_VERSION 2.4.0
 ENV SPARK_PACKAGE spark-$SPARK_VERSION-bin-without-hadoop
 ENV SPARK_HOME /usr/spark-$SPARK_VERSION
+ENV PYSPARK_DRIVER_PYTHON ipython
 ENV PYSPARK_PYTHON python3
 ENV SPARK_DIST_CLASSPATH="$HADOOP_HOME/etc/hadoop/*:$HADOOP_HOME/share/hadoop/common/lib/*:$HADOOP_HOME/share/hadoop/common/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/hdfs/lib/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/yarn/lib/*:$HADOOP_HOME/share/hadoop/yarn/*:$HADOOP_HOME/share/hadoop/mapreduce/lib/*:$HADOOP_HOME/share/hadoop/mapreduce/*:$HADOOP_HOME/share/hadoop/tools/lib/*"
 ENV PATH $PATH:$SPARK_HOME/bin
