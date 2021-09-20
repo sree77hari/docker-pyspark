@@ -19,9 +19,11 @@ RUN sed -i 's|'$(cat curr_version.tmp)'/main|'$ALPINE_OLD_VERSION'/main|' \
     rm curr_version.tmp
 # Upgrading pip to the last compatible version
 RUN pip3 install --upgrade pip
-RUN apk add --no-cache python-dev py-pip
+
 # Installing IPython
-RUN pip3 install ipython
+RUN apk add --no-cache python-dev py-pip
+RUN pip install https://github.com/jonathanslenders/python-prompt-toolkit/archive/master.zip
+RUN pip install ipython
 
 # GENERAL DEPENDENCIES
 
