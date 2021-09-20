@@ -46,9 +46,9 @@ ENV PYSPARK_PYTHON python3
 ENV PYSPARK_DRIVER_PYTHON ipython 
 ENV SPARK_DIST_CLASSPATH="$HADOOP_HOME/etc/hadoop/*:$HADOOP_HOME/share/hadoop/common/lib/*:$HADOOP_HOME/share/hadoop/common/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/hdfs/lib/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/yarn/lib/*:$HADOOP_HOME/share/hadoop/yarn/*:$HADOOP_HOME/share/hadoop/mapreduce/lib/*:$HADOOP_HOME/share/hadoop/mapreduce/*:$HADOOP_HOME/share/hadoop/tools/lib/*"
 ENV PATH $PATH:$SPARK_HOME/bin
-RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-$SPARK_PACKAGE.tar.gz && \
-    tar -xvzf spark-$SPARK_PACKAGE.tar.gz && \
-    mv spark-$SPARK_PACKAGE /usr/spark-$SPARK_PACKAGE && \
+RUN wget https://archive.apache.org/dist/spark/spark-2.4.0/$SPARK_PACKAGE.tar.gz && \
+    tar -xvzf $SPARK_PACKAGE.tar.gz && \
+    mv $SPARK_PACKAGE $SPARK_HOME && \
     rm -rf $SPARK_HOME/examples $SPARK_HOME/ec2
 
 WORKDIR /$SPARK_HOME
