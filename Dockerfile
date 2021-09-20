@@ -42,12 +42,11 @@ RUN wget http://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/had
 ENV SPARK_VERSION 2.4.0
 ENV SPARK_PACKAGE spark-$SPARK_VERSION-bin-without-hadoop
 ENV SPARK_HOME /usr/spark-$SPARK_VERSION
-ENV PYSPARK_PYTHON python3 
-ENV PYSPARK_DRIVER_PYTHON ipython 
+ENV PYSPARK_PYTHON python3
 ENV SPARK_DIST_CLASSPATH="$HADOOP_HOME/etc/hadoop/*:$HADOOP_HOME/share/hadoop/common/lib/*:$HADOOP_HOME/share/hadoop/common/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/hdfs/lib/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/yarn/lib/*:$HADOOP_HOME/share/hadoop/yarn/*:$HADOOP_HOME/share/hadoop/mapreduce/lib/*:$HADOOP_HOME/share/hadoop/mapreduce/*:$HADOOP_HOME/share/hadoop/tools/lib/*"
 ENV PATH $PATH:$SPARK_HOME/bin
-RUN wget https://archive.apache.org/dist/spark/spark-2.4.0/$SPARK_PACKAGE.tar.gz && \
-    tar -xvzf $SPARK_PACKAGE.tar.gz && \
+RUN wget https://archive.apache.org/dist/spark/spark-2.4.0/$SPARK_PACKAGE.tgz && \
+    tar -xvzf $SPARK_PACKAGE.tgz && \
     mv $SPARK_PACKAGE $SPARK_HOME && \
     rm -rf $SPARK_HOME/examples $SPARK_HOME/ec2
 
