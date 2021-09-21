@@ -27,10 +27,10 @@ RUN /bin/sh -c wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-
 
 
 # Installing IPython
-RUN apk add --no-cache python-dev py-pip
-RUN pip install --upgrade pip
-RUN pip install https://github.com/jonathanslenders/python-prompt-toolkit/archive/master.zip
-RUN pip install ipython
+#RUN apk add --no-cache python-dev py-pip
+#RUN pip install --upgrade pip
+#RUN pip install https://github.com/jonathanslenders/python-prompt-toolkit/archive/master.zip
+#RUN pip install ipython
 
 
 
