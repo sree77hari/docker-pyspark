@@ -20,11 +20,17 @@ RUN sed -i 's|'$(cat curr_version.tmp)'/main|'$ALPINE_OLD_VERSION'/main|' \
 # Upgrading pip to the last compatible version
 RUN pip3 install --upgrade pip
 
+#Installing Anaconda3-2019.10-Linux-x86_64.sh
+RUN /bin/sh -c wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O ~/anaconda.sh &&     /bin/bash ~/anaconda.sh -b -p /opt/conda &&     rm ~/anaconda.sh &&     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh &&     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc &&     echo "conda activate base" >> ~/.bashrc &&     find /opt/conda/ -follow -type f -name '*.a' -delete &&     find /opt/conda/ -follow -type f -name '*.js.map' -delete &&     /opt/conda/bin/conda clean -afy
+
+
 # Installing IPython
 RUN apk add --no-cache python-dev py-pip
 RUN pip install --upgrade pip
 RUN pip install https://github.com/jonathanslenders/python-prompt-toolkit/archive/master.zip
 RUN pip install ipython
+
+
 
 # GENERAL DEPENDENCIES
 
