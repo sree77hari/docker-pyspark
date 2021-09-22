@@ -31,7 +31,7 @@ RUN pip3 install --upgrade pip
 
 #Installing Anaconda3-2019.10-Linux-x86_64.sh
 RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh
-RUN yes | bash Anaconda3-2019.10-Linux-x86_64.sh yes yes
+RUN yes | bash Anaconda3-2019.10-Linux-x86_64.sh
 RUN source ~/.bashrc
 
 
