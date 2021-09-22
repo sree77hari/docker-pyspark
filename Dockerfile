@@ -21,7 +21,7 @@ RUN sed -i 's|'$(cat curr_version.tmp)'/main|'$ALPINE_OLD_VERSION'/main|' \
 RUN pip3 install --upgrade pip
 
 #Installing Anaconda3-2019.10-Linux-x86_64.sh
-RUN wget -O Anaconda3-2019.10-Linux-x86_64.sh https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh
+RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh
 RUN bash Anaconda3-2019.10-Linux-x86_64.sh
 RUN source ~/.bashrc
 # Installing IPython
