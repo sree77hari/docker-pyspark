@@ -30,9 +30,18 @@ RUN pip3 install --upgrade pip
 
 
 #Installing Anaconda3-2019.10-Linux-x86_64.sh
-RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh
-RUN bash Anaconda3-2019.10-Linux-x86_64.sh yes yes
-RUN source ~/.bashrc
+#RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh
+#RUN bash Anaconda3-2019.10-Linux-x86_64.sh yes yes
+#RUN source ~/.bashrc
+RUN apk add --no-cache --virtual build_deps bash && \
+
+    wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O Anaconda.$
+    bash Anaconda.sh -b -p /opt/conda && \
+    echo "export PATH=opt/conda/bin:${PATH}" >> /root/.bashrc && \
+    rm -f Anaconda.sh && \
+    /opt/conda/bin/conda clean -afy
+
+
 # Installing IPython
 #RUN apk add --no-cache python-dev py-pip
 #RUN pip install --upgrade pip
