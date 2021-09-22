@@ -1,5 +1,12 @@
 FROM java:8-jdk-alpine
 
+# GENERAL DEPENDENCIES
+
+RUN apk update && \
+    apk add curl && \
+    apk add bash
+
+
 # PYTHON 3
 
 ENV PYTHON_VERSION 3.4.3-r2
@@ -20,6 +27,8 @@ RUN sed -i 's|'$(cat curr_version.tmp)'/main|'$ALPINE_OLD_VERSION'/main|' \
 # Upgrading pip to the last compatible version
 RUN pip3 install --upgrade pip
 
+
+
 #Installing Anaconda3-2019.10-Linux-x86_64.sh
 RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh
 RUN bash Anaconda3-2019.10-Linux-x86_64.sh
@@ -30,13 +39,6 @@ RUN source ~/.bashrc
 #RUN pip install https://github.com/jonathanslenders/python-prompt-toolkit/archive/master.zip
 #RUN pip install ipython
 
-
-
-# GENERAL DEPENDENCIES
-
-RUN apk update && \
-    apk add curl && \
-    apk add bash
 
 # HADOOP
 
