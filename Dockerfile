@@ -30,7 +30,7 @@ RUN pip3 install --upgrade pip
 
 
 #Installing Anaconda3-2019.10-Linux-x86_64.sh
-RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh
+RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -yes
 RUN bash Anaconda3-2019.10-Linux-x86_64.sh -yes
 RUN source ~/.bashrc
 # Installing IPython
