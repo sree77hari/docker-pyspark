@@ -35,7 +35,7 @@ RUN pip3 install --upgrade pip
 #RUN source ~/.bashrc
 RUN apk add --no-cache --virtual build_deps bash && \
 
-    curl -O https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O Anaconda.$
+    curl -O https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O Anaconda.sh
     bash Anaconda.sh -b -p /opt/conda && \
     echo "export PATH=opt/conda/bin:${PATH}" >> /root/.bashrc && \
     rm -f Anaconda.sh && \
