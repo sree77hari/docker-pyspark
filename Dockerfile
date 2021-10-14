@@ -62,5 +62,5 @@ RUN groupadd --gid $GID $USER
 RUN useradd --create-home --shell /bin/sh --uid $UID --gid $GID $USER
 RUN echo 'user ALL=(ALL)   NOPASSWD:ALL' >> /etc/sudoers
 USER $USER
-#WORKDIR /$SPARK_HOME
+WORKDIR /$SPARK_HOME
 CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
