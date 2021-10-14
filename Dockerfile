@@ -48,9 +48,7 @@ RUN export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
 RUN apt-get clean
 
 RUN ln -s /bin/sh /usr/local/bin/sh
-SHELL ["/bin/sh", "-c"]
-RUN echo I am using bash, which is now the default
-RUN ["/bin/sh", "-c", "echo I am using /bin/sh"]
+
 # user details
 ENV USER=user
 ENV UID=1000
