@@ -49,7 +49,7 @@ RUN export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
 RUN wget https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep_0.10.0_amd64.deb \
     && dpkg -i ripgrep_0.10.0_amd64.deb
 RUN apt-get clean
-
+RUN ln -sf /bin/bash /bin/sh
 RUN ln -s /bin/sh /usr/local/bin/sh
 
 # user details
