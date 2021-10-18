@@ -50,18 +50,19 @@ RUN ln -sf /bin/bash /bin/sh
 RUN ln -s /bin/sh /usr/local/bin/sh
 
 # user details
-ENV USER=user
+ENV USER=spark
 ENV UID=1000
 ENV GID=1000
 
 # create user
 RUN groupadd --gid $GID $USER
 RUN useradd --create-home --shell /bin/sh --uid $UID --gid $GID $USER
-RUN echo 'user ALL=(ALL)   NOPASSWD:ALL' >> /etc/sudoers
+RUN echo 'spark ALL=(ALL)   NOPASSWD:ALL' >> /etc/sudoers
 USER $USER
 WORKDIR /$SPARK_HOME
 RUN echo 'export JAVA_HOME=$(dirname $(dirname $(readlink -f  /usr/bin/java)))' >> /home/$USER/.bashrc
 RUN echo 'export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")' >> /home/$USER/.bashrc
 RUN /bin/bash -c "source /home/$USER/.bashrc"
 
-CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
+#CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
+CMD ["su", "-c", "bin/spark-class org.apache.spark.deploy.master.Master", "spark"]
