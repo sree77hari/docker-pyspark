@@ -60,7 +60,8 @@ RUN useradd --create-home --shell /bin/sh --uid $UID --gid $GID $USER
 RUN echo 'user ALL=(ALL)   NOPASSWD:ALL' >> /etc/sudoers
 USER $USER
 WORKDIR /$SPARK_HOME
-RUN export JAVA_HOME=$(dirname $(dirname $(readlink -f  /usr/bin/java)))
-RUN export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+RUN echo 'export JAVA_HOME=$(dirname $(dirname $(readlink -f  /usr/bin/java)))' >> /home/$USER/.bashrc
+RUN echo 'export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")' >> /home/$USER/.bashrc
+RUN /bin/bash -c "source /home/$USER/.bashrc"
 
 CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
