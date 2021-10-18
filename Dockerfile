@@ -64,5 +64,5 @@ RUN echo 'export JAVA_HOME=$(dirname $(dirname $(readlink -f  /usr/bin/java)))' 
 RUN echo 'export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")' >> /home/$USER/.bashrc
 RUN /bin/bash -c "source /home/$USER/.bashrc"
 
-#CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
-CMD ["su", "-c", "bin/spark-class org.apache.spark.deploy.master.Master", "spark"]
+CMD ["bin/spark-class org.apache.spark.deploy.master.Master && echo 'export JAVA_HOME=$(dirname $(dirname $(readlink -f  /usr/bin/java)))' && echo 'export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")'"]
+#CMD ["su", "-c", "bin/spark-class org.apache.spark.deploy.master.Master", "spark"]
