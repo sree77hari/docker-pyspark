@@ -16,8 +16,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-ENV JAVA_HOME=$(dirname $(dirname $(readlink -f  /usr/bin/java)))
-ENV JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 # HADOOP
 
