@@ -16,6 +16,8 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
+ENV JAVA_HOME=$(dirname $(dirname $(readlink -f  /usr/bin/java)))
+ENV JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
 
 # HADOOP
 
@@ -36,7 +38,7 @@ ENV SPARK_HOME /usr/spark-$SPARK_VERSION
 ENV PYSPARK_DRIVER_PYTHON ipython
 ENV PYSPARK_PYTHON python3
 ENV SPARK_DIST_CLASSPATH="$HADOOP_HOME/etc/hadoop/*:$HADOOP_HOME/share/hadoop/common/lib/*:$HADOOP_HOME/share/hadoop/common/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/hdfs/lib/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/yarn/lib/*:$HADOOP_HOME/share/hadoop/yarn/*:$HADOOP_HOME/share/hadoop/mapreduce/lib/*:$HADOOP_HOME/share/hadoop/mapreduce/*:$HADOOP_HOME/share/hadoop/tools/lib/*"
-ENV PATH $PATH:/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$HADOOP_HOME/bin:$SPARK_HOME/bin
+ENV PATH $PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$HADOOP_HOME/bin:$SPARK_HOME/bin:$JAVA_HOME/bin
 RUN wget https://archive.apache.org/dist/spark/spark-2.4.0/spark-2.4.0-bin-without-hadoop.tgz && \
     tar -xvzf spark-2.4.0-bin-without-hadoop.tgz && \
     mv $SPARK_PACKAGE $SPARK_HOME && \
@@ -60,9 +62,7 @@ RUN useradd --create-home --shell /bin/sh --uid $UID --gid $GID $USER
 RUN echo 'spark ALL=(ALL)   NOPASSWD:ALL' >> /etc/sudoers
 USER $USER
 WORKDIR /$SPARK_HOME
-RUN echo 'export JAVA_HOME=$(dirname $(dirname $(readlink -f  /usr/bin/java)))' >> /home/$USER/.bashrc
-RUN echo 'export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")' >> /home/$USER/.bashrc
 RUN /bin/bash -c "source /home/$USER/.bashrc"
 
-CMD ["bin/spark-class org.apache.spark.deploy.master.Master && export JAVA_HOME=$(dirname $(dirname $(readlink -f  /usr/bin/java))) && export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")"]
+CMD ["bin/spark-class","org.apache.spark.deploy.master.Master"]
 #CMD ["su", "-c", "bin/spark-class org.apache.spark.deploy.master.Master", "spark"]
