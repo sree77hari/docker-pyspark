@@ -10,7 +10,7 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-
+RUN apt-get install -y busybox && ln -s /bin/busybox /bin/vi
 # Users with other locales should set this in their derivative image
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
