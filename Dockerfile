@@ -64,5 +64,5 @@ USER $USER
 WORKDIR /$SPARK_HOME
 RUN /bin/bash -c "source /home/$USER/.bashrc"
 
-CMD ["bin/spark-class","org.apache.spark.deploy.master.Master"]
+CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
 #CMD ["su", "-c", "bin/spark-class org.apache.spark.deploy.master.Master", "spark"]
